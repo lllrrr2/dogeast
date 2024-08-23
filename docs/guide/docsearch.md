@@ -1,6 +1,6 @@
 # DocSearch
 
-> 最近更新：2023-11-17
+> 最近更新：2024-7-29
 
 
 ## 安装
@@ -30,7 +30,7 @@ npm i -D @vuepress/plugin-docsearch@next
 
 
 
-![](./vuepress-47.png)
+![](/docsearch/01.png)
 
 
 
@@ -45,9 +45,9 @@ appId / apiKey / indexName 这3个我们等会获取了再填入
 ```ts{7-9}
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 
-export default {
-  //========docsearch配置========//
+export defaultdefineUserConfig ({
   plugins: [
+    //========docsearch配置========//
     docsearchPlugin({
       appId: '<Application ID>',
       apiKey: '<Search-Only API Key>',
@@ -72,13 +72,12 @@ export default {
       },
     }),
   ],
-}
+})
 ```
 
 输出：
 
-![](./vuepress-48.png)
-
+![](/docsearch/02.png)
 
 
 为了获取 `appId` / `apiKey` / `indexName`
@@ -103,16 +102,16 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 
 点 `Apply` 申请，填入你的网址/邮箱/仓库链接即可
 
-![](./vuepress-49.png)
+![](/docsearch/03.png)
 
 
-![](./vuepress-50.png)
+![](/docsearch/04.png)
 
 ::: tip 说明
 我点了2次都没有跳转，最后挂了个梯子可以了
 :::
 
-![](./vuepress-51.png)
+![](/docsearch/05.png)
 
 
 ### 注册账号
@@ -127,7 +126,7 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 但是 apikey 这个没用，需要 `Search-Only API Key` 我们一会再填
 :::
 
-![](./vuepress-52.png)
+![](/docsearch/06.png)
 
 通过邀请链接注册并登录进[Algolia官网](https://www.algolia.com/)，点 `Search` - `index`
 
@@ -137,9 +136,9 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 没有弹按钮的，去邮箱复制邀请链接打开就有了
 :::
 
-![](./vuepress-53.png)
+![](/docsearch/07.png)
 
-![](./vuepress-54.png)
+![](/docsearch/08.png)
 
 
 ### 爬取数据
@@ -150,19 +149,19 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 点刷新看看，我点了也没有用
 :::
 
-![](./vuepress-55.png)
+![](/docsearch/09.png)
 
 
 登录官方爬虫后台进行调试：[https://crawler.algolia.com/](https://crawler.algolia.com/)
 
 再点击官方帮我们申请的Application
 
-![](./vuepress-56.png)
+![](/docsearch/10.png)
 
 
 点 `Overview` 进来后发现爬虫数据有的，但是Records没有值，说明数据逻辑有问题
 
-![](./vuepress-57.png)
+![](/docsearch/11.png)
 
 
 点 `Editor` 进来发现了问题，这里多了一个 `/doc` 
@@ -173,37 +172,37 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 如果你网址有别名解析或者重定向了，就不能用了，只能用你申请时的网址
 :::
 
-![](./vuepress-58.png)
+![](/docsearch/12.png)
 
 改过之后点 `Runtest` 测试一下，records还是没有值
 
 原来是class标签不对，用审查元素看了下page也的class是 theme-default-content
 
-![](./vuepress-59.png)
+![](/docsearch/13.png)
 
 那我们将原来的 `.content_default` 全部替换成 `.theme-default-content` 即可
 
 
-![](./vuepress-60.png)
+![](/docsearch/14.png)
 
 再次 `Run test`，可以在 Search Preview 里可以搜素看看
 
-![](./vuepress-61.png)
+![](/docsearch/15.png)
 
 
 没问题了点保存，再重新在Overview重新爬取，Records有值就代表OK了
 
-![](./vuepress-62.png)
+![](/docsearch/16.png)
 
 点击index回到algolia，看数据是否同步过来
 
-![](./vuepress-63.png)
+![](/docsearch/17.png)
 
 最后，回到 查看API KEYS，这里我们将 `Search API Key` 填入 `config.ts` 
 
-![](./vuepress-64.png)
+![](/docsearch/18.png)
 
-![](./vuepress-65.png)
+![](/docsearch/19.png)
 
 
 
@@ -217,7 +216,7 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 免费的东西自然是费脑筋
 :::
 
-![](./vuepress-66.png)
+![](/docsearch/20.png)
 
 
 
@@ -237,7 +236,7 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 :::
 
 
-![](./vuepress-67.png)
+![](/docsearch/21.png)
 
 
 ### 创建应用
@@ -250,11 +249,11 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 
 创建一个新的应用程序 Applications - Create Application
 
-![](./vuepress-68.png)
+![](/docsearch/22.png)
 
-![](./vuepress-69.png)
+![](/docsearch/23.png)
 
-![](./vuepress-70.png)
+![](/docsearch/24.png)
 
 名称随便，选择 `Free` 免费的方案，下一步
 
@@ -262,7 +261,7 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 爬虫每月1万次，足够用了
 :::
 
-![](./vuepress-71.png)
+![](/docsearch/25.png)
 
 这里只能选择默认了，香港这些数据中心都不能选择
 
@@ -270,16 +269,16 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 香港的只能通过申请，官方给你配，不过即便是美国实测搜索也慢不了多少
 :::
 
-![](./vuepress-72.png)
+![](/docsearch/26.png)
 
 
 勾选同意，创建即可
 
-![](./vuepress-73.png)
+![](/docsearch/27.png)
 
 这样就完成了
 
-![](./vuepress-74.png)
+![](/docsearch/28.png)
 
 
 
@@ -287,11 +286,11 @@ DocSearch官网：[https://docsearch.algolia.com/](https://docsearch.algolia.com
 
 右下角创建索引，选择 Date Sources - Indices - Create Index
 
-![](./vuepress-75.png)
+![](/docsearch/29.png)
 
 这个就是我们的索引名，即 indexName ，后面会用到
 
-![](./vuepress-76.png)
+![](/docsearch/30.png)
 
 
 
@@ -310,9 +309,9 @@ indexName：索引名
 :::
 
 
-![](./vuepress-77.png)
+![](/docsearch/31.png)
 
-![](./vuepress-78.png)
+![](/docsearch/32.png)
 
 
 
@@ -332,7 +331,7 @@ indexName：索引名
 这个和 [Github Actions](#github-actions) 任选其一
 :::
 
-我用了 [虚拟机](https://yiov.top/website/VMware) 安装了 [docker](https://yiov.top/website/docker)，进 [宝塔](https://yiov.top/website/BT) 根目录 `root`文件夹
+我用了 [虚拟机](https://yiov.top/website/VMware.html) 安装了 [docker](https://yiov.top/website/docker.html)，进 [宝塔](https://yiov.top/website/BT.html) 根目录 `root`文件夹
 
 新建一个 `docsearch` 目录
 
@@ -340,16 +339,16 @@ indexName：索引名
 名字随便，只要自己记得住就行
 :::
 
-![](./vuepress-79.png)
+![](/docsearch/33.png)
 
 新建一个 `.env` 环境变量文件，并填入相应值
 
-```env
+```
 APPLICATION_ID=你的Application ID
 API_KEY=你的Admin API Key(非Search)
 ```
 
-![](./vuepress-80.png)
+![](/docsearch/34.png)
 
 
 安装 [jq](https://repology.org/project/jq/versions) 一款json解析工具
@@ -362,7 +361,7 @@ yum install jq -y
 jq --version
 ```
 
-![](./vuepress-81.png)
+![](/docsearch/35.png)
 
 
 在docsearch目录里新建 `config.json` 文件，用于爬虫的配置，根据提示修改好自己的链接
@@ -374,7 +373,8 @@ jq --version
 
 最后审查元素发现，有个facetFliter里有个lang， 同时vuepress官方也指出 `attributesForFaceting` 必须包含 `lang` 否则无法使用
 
-![](./vuepress-82.png)
+![](/docsearch/36.png)
+
 :::
 
 
@@ -425,12 +425,12 @@ jq --version
 :::
 
 
-![](./vuepress-83.png)
+![](/docsearch/37.png)
 
 
 至此我们的前期工作就准备好了，开始爬数据
 
-![](./vuepress-84.png)
+![](/docsearch/38.png)
 
 现在我们拉取镜像并运行爬虫
 
@@ -445,7 +445,7 @@ jq --version
 docker run -it --env-file=/root/docsearch/.env -e "CONFIG=$(cat /root/docsearch/config.json | jq -r tostring)" algolia/docsearch-scraper
 ```
 
-![](./vuepress-85.png)
+![](/docsearch/39.png)
 
 
 回到Algolia看到数据已经有了
@@ -454,11 +454,11 @@ docker run -it --env-file=/root/docsearch/.env -e "CONFIG=$(cat /root/docsearch/
 这里成功了会有个 `lang：zh_CN`，否则有数据也用不了
 :::
 
-![](./vuepress-86.png)
+![](/docsearch/40.png)
 
 在 `config.ts` 填上数据后，搜索一次看下成果
 
-![](./vuepress-87.png)
+![](/docsearch/41.png)
 
 
 
@@ -478,55 +478,94 @@ docker run -it --env-file=/root/docsearch/.env -e "CONFIG=$(cat /root/docsearch/
 
 
 
-我们先创建一个工作流
+我们先在仓库 - 设置 - Secrets and variables - actions，新增仓库秘钥
+
+![](/docsearch/42.png)
+
+分别添加 `APPLICATION_ID` 和 `API_KEY`
+
+::: warning 千万不要填错了
+`APPLICATION_ID` 是 [algolia的 APPLICATION ID](https://www.algolia.com/)
+
+`API_KEY` 是 [algolia的 Admin API Key](https://www.algolia.com/)
+:::
+
+![](/docsearch/43.png)
+
+![](/docsearch/44.png)
+
+
+然后在根目录新建一个 `docsearch.json` 文件，复制粘贴并提交
+
+![](/docsearch/45.png)
+
+
+::: tip 说明
+只需要修改 `index_name` 和 `startUrls` 其余选项可保持默认
+
+
+`stop_urls` 表示的是爬虫不爬取的链接
+:::
+
+
+```json{2,5,32}
+{
+    "index_name": "你的索引名",
+    "start_urls": [
+        {
+            "url": "https://你的网址.com/",
+            "selectors_key": ""
+        }
+    ],
+    "stop_urls": [],
+    "selectors": {
+        "default": {
+            "lvl0": {
+                "selector": "",
+                "default_value": "我的文档"
+            },
+            "lvl1": ".theme-default-content h1",
+            "lvl2": ".theme-default-content h2",
+            "lvl3": ".theme-default-content h3",
+            "lvl4": ".theme-default-content h4",
+            "lvl5": ".theme-default-content h5",
+            "lvl6": ".theme-default-content h6",
+            "text": ".theme-default-content p, .theme-default-content li",
+            "lang": {
+                "selector": "/html/@lang",
+                "type": "xpath",
+                "global": true
+            }
+        }
+    },
+    "custom_settings": {
+        "attributesForFaceting": [
+            "lang"
+        ]
+    }
+}
+```
+
+
+![](/docsearch/46.png)
+
+![](/docsearch/47.png)
+
+
+最后，创建一个工作流
 
 ::: tip 说明
 我因为已经有一个了，我直接新建一个就行
 :::
 
-![](./vuepress-88.png)
+![](/docsearch/48.png)
 
-![](./vuepress-89.png)
+![](/docsearch/49.png)
+
 
 命名为`docsearch.yml` ，复制粘贴下面的工作流代码，提交
 
-![](./vuepress-90.png)
-
-
-:::: code-group
-::: code-group-item 发布后触发
-```yml
-on: deployment
-```
-:::
-::: code-group-item 提交后触发
-```yml
-on:
-  push:
-    branches:
-      - main
-```
-:::
-::: code-group-item 定时触发
-```yml
-on:
-  schedule:
-    # 约每天早上8点触发（UTC时间0点）
-    - cron: '0 0 * * *'
-```
-:::
-::: code-group-item 手动触发
-```yml
-on:
-  workflow_dispatch:
-```
-:::
-::::
-
-
-::: warning 注意
-这里触发的条件自己选，改代码高亮的位置就行，其他不要动
-:::
+![](/docsearch/50.png)
 
 
 ```yml{4-8}
@@ -568,83 +607,47 @@ jobs:
 
 ```
 
-![](./vuepress-91.png)
-
-
-然后在根目录新建一个 `docsearch.json` 文件，复制粘贴并提交
-
-![](./vuepress-92.png)
-
-
-::: tip 说明
-只需要修改 `index_name` 和 `startUrls` 其余选项可保持默认
-
-
-`stop_urls` 表示的是爬虫不爬取的链接
-:::
-
-
-```json{2,5,32}
-{
-    "index_name": "你的索引名",
-    "start_urls": [
-        {
-            "url": "https://你的网址.com/",
-            "selectors_key": ""
-        }
-    ],
-    "stop_urls": [],
-    "selectors": {
-        "default": {
-            "lvl0": {
-                "selector": "",
-                "default_value": "我的文档"
-            },
-            "lvl1": ".theme-default-content h1",
-            "lvl2": ".theme-default-content h2",
-            "lvl3": ".theme-default-content h3",
-            "lvl4": ".theme-default-content h4",
-            "lvl5": ".theme-default-content h5",
-            "lvl6": ".theme-default-content h6",
-            "text": ".theme-default-content p, .theme-default-content li",
-            "lang": {
-                "selector": "/html/@lang",
-                "type": "xpath",
-                "global": true
-            }
-        }
-    },
-    "custom_settings": {
-        "attributesForFaceting": [
-            "lang"
-        ]
-    }
-}
-```
-
-
-![](./vuepress-93.png)
-
-![](./vuepress-94.png)
-
-
-然后在仓库 - 设置 - Secrets and variables - actions，新增仓库秘钥
-
-![](./vuepress-95.png)
-
-分别添加 `APPLICATION_ID` 和 `API_KEY`
-
 ::: warning 注意
-APPLICATION_ID是 [algolia](https://www.algolia.com/) 的 `APPLICATION ID`
+把注释都删掉
 
-API_KEY是 [algolia](https://www.algolia.com/) 的 `Admin API Key`
-
-千万不要填错了
+触发的条件自己选，改代码高亮的位置就行，其他不要动
 :::
 
-![](./vuepress-96.png)
+:::: code-group
+::: code-group-item 发布后触发
+```yml
+on: deployment
+```
+:::
+::: code-group-item 提交后触发
+```yml
+on:
+  push:
+    branches:
+      - main
+```
+:::
+::: code-group-item 定时触发
+```yml
+on:
+  schedule:
+    # 约每天早上8点触发（UTC时间0点）
+    - cron: '0 0 * * *'
+```
+:::
+::: code-group-item 手动触发
+```yml
+on:
+  workflow_dispatch:
+```
+:::
+::::
 
-![](./vuepress-97.png)
+
+![](/docsearch/51.png)
+
+
+
 
 
 
@@ -652,9 +655,9 @@ API_KEY是 [algolia](https://www.algolia.com/) 的 `Admin API Key`
 
 我们提交一次代码，等工作流跑完，我们试试搜索结果
 
-![](./vuepress-98.png)
+![](/docsearch/52.png)
 
-![](./vuepress-87.png)
+![](/docsearch/20.png)
 
 
 
@@ -725,7 +728,7 @@ API_KEY是 [algolia](https://www.algolia.com/) 的 `Admin API Key`
 
 这是官网原文档的索引，有明显的分类，很美观
 
-![](./vuepress-99.png)
+![](/docsearch/53.png)
 
 
 
@@ -1736,7 +1739,7 @@ docsearchPlugin({
 }),
 ```
 
-![](./vuepress-103.png)
+![](/docsearch/54.png)
 
 
 
